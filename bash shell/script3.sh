@@ -1,0 +1,2 @@
+banner "script 3"
+

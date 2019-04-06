@@ -1,0 +1,154 @@
+GNU C
+
+Compiler:
+	First, the compiler reads the source code, perhaps generating an intermediate code (such as pseudo-code) that simplifies the source code for subsequent processing.
+	Next, the compiler converts the intermediate code (if there is any) or the original source code into an object code file, which contains machine language but is not yet executable. The compiler builds a separate object file for each source file. These are only temporary and are deleted by the compiler after compilation.
+	Finally, the compiler runs a linker. The linker merges the newly-created object code with some standard, built-in object code to produce an executable file that can stand alone.
+
+	File Names:
+		Source code file	program_name.c 
+		Object file	program_name.o 
+		Executable file	program_name (no ending) 
+		Header file	name.h 
+		Library file	libname.a or libname.so 
+
+Variable Type:
+	It gives a compiler precise information about the amount of memory that will have to be allotted to a variable when a program is run, and what sort of arithmetic will have to be used with it (e.g. integer, floating point, or none at all).
+	It provides the compiler with a list of the variables so that it can catch errors in the code, such as assigning a string to an integer variable.
+
+	char: A single byte, usually one ASCII character. 
+	short: A short integer (16 bits long on most GNU systems). Also called short int. Rarely used.
+	int: A standard integer (32 bits long on most GNU systems).
+	long: A long integer (32 bits long on most GNU systems, the same as int). Also called long int.
+	long long: A long long integer (64 bits long on most GNU systems). Also called long long int.
+
+	Type	Bits	Possible Values 
+	char	8	-127 to 127 
+	unsigned char	8	0 to 255 
+
+	short	16	-32,767 to 32,767 
+	unsigned short	16	0 to 65,535 
+
+	int	32	-2,147,483,647 to 2,147,483,647 
+	unsigned int	32	0 to 4,294,967,295 
+
+	long	32	-2,147,483,647 to 2,147,483,647 
+	unsigned long	32	0 to 4,294,967,295 
+
+	long long	64	-9,223,372,036,854,775,807 to 9,223,372,036,854,775,807 
+	unsigned long long	64	0 to 18,446,744,073,709,551,615 
+
+
+
+	Type	Bits	Possible Values 
+	char	8	-127 to 127 
+	unsigned char	8	0 to 255 
+
+	short	16	-32,767 to 32,767 
+	unsigned short	16	0 to 65,535 
+
+	int	32	-2,147,483,647 to 2,147,483,647 
+	unsigned int	32	0 to 4,294,967,295 
+
+	long	32	-2,147,483,647 to 2,147,483,647 
+	unsigned long	32	0 to 4,294,967,295 
+
+	long long	64	-9,223,372,036,854,775,807 to 9,223,372,036,854,775,807 
+	unsigned long long	64	0 to 18,446,744,073,709,551,615 
+
+
+cast operator:
+	(type) variable
+
+External variables:
+	use variables that are defined in another file.
+
+static variables:
+	Static variables maintain their value between function calls
+
+other storage classes:
+	auto is the opposite of static. It is redundant, but is included in contemporary versions of C for backwards compatibility. All local variables are auto by default.
+	register is another outdated C storage class. Defining a variable as register used to store it in one of the computer's registers, a specific location on its processor chip, thereby making code using that variable run faster. These days, most C compilers (including GCC) are smart enough to optimize the code (make it faster and more compact) without the register keyword.
+	typedef allows you to define your own variable types. See More data types, for more information.
+
+
+
+
+Data Structure
+	struct(structure) data type, which is a group of variables clustered together with a common name.
+	related data typs is union, which can contain any type of variable, but only one at a time.
+	Structures and unions can be linked together into complex data structures such as lists and trees.
+
+
+	Struct:
+	  Alternatively, the typedef command can be used to cut down on typing out code in the long term. The type definition is made once at the start of the program and subsequent variable declarations are made by using the new name, without the word struct: 
+    e.g:
+        typedef struct
+        {
+            char name[100];
+            char address[200];
+            int year_of_birth;
+            int month_of_birth;
+            int day_of_birth;
+        } personal_data;
+
+        personal_data person001;
+        personal_data person002;
+        personal_data person003;
+
+
+        Note that this use of the typedef command parallels the usage we have already seen: 
+            typedef existing_type new_type
+
+
+
+    Memory allocation:
+        Dynamic data is created via the process of memory allocation, that is, assigning a block of memory to a variable. Blocks of memory are usually assigned with the malloc function (the function name is from the phrase "memory allocation"), and can be resized with the realloc ("memory reallocation") function, and even merged back into the pool of available memory with the free function.
+
+    A union is like a structure in which all of the members are stored at the same address. Only one member can be in a union at one time. The union data type was invented to prevent the computer from breaking its memory up into many inefficiently sized chunks, a condition that is called memory fragmentation.
+
+        A union is declared in the same way as a structure. It has a list of members, as in the example below: 
+
+            union int_or_float
+            {
+                int int_member;
+                float float_member;
+            }
+        Declaring union variables is similar to declaring structure variables: 
+
+        union int_or_float my_union1, my_union2;
+        Just like structures, the members of unions can be accessed with the . and -> operators. However, unlike structures, the variables my_union1 and my_union2 above can be treated as either integers or floating-point variables at different times during the program. For example, if you write my_union1.int_member = 5;, then the program sees my_union1 as being an integer. (This is only a manner of speaking. However, my_union1 by itself does not have a value; only its members have values.) On the other hand, if you then type my_union1.float_member = 7.7;, the my_union variable loses its integer value. It is crucial to remember that a union variable can only have one type at the same time.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

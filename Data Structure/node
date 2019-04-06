@@ -1,0 +1,23 @@
+C						C++
+
+Struct Node{
+	int data;
+	Struct Node* link;			Node* link;
+} 
+
+
+Node* A;
+A = NULL; //empty list
+
+Node* temp = 					Node* temp = new Node();
+(Node*) malloc(sizeof(Node))
+
+(*temp).data = 2;				temp->data = 2;
+(*temp).link = NULL;    			temp->link=NULL;
+A = temp;
+
+
+temp = new Node();     Traveral logic:
+temp->data = 4;		Node* temp = A;
+temp->link = NULL;	While(temp1->link1=NULL){ temp1 = temp1->link;}
+			temp1->link = temp;

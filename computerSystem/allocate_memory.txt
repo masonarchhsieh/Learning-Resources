@@ -1,0 +1,21 @@
+allocate block of memory
+								 unsigned int
+malloc				void *malloc(size_t size)
+e.g					void *p = malloc(4);
+							= malloc(sizeof(int));
+							= malloc(3*sizeof(int));
+									no of es    size of one unit
+								typecasting
+					int *p = (int*)malloc(3*sizeof(int));
+					p[0] = 2;
+					p[1] = 4;
+
+
+calloc				void *calloc(size_t num, size_t size)
+					int *p = (int*)calloc(3,sizeof(int));
+										no.of e.    size of data-type in bytes
+
+
+
+realloc   			void *realloc(void* ptr; size_t size);
+					

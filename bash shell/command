@@ -1,0 +1,215 @@
+systemctl
+journalctl
+lsblk
+ip link
+ping -c times URL
+sudo systemctl enable service
+sudo pacman -S packagename
+     yaourt -Syu
+        
+sudo wifi-menu
+chmod 777	:(read,write,executable)
+bc
+lsb_release
+free
+ar xv FILE.deb
+xv -d FILE.tar.xz
+lsusb
+locate
+archey3
+screenfetch
+bac
+[date]
+cal
+cal 7 2016
+date
+date '+DATE:%m-%y%nTIME:%H:%M:%S'
+	DATE:01-17
+	TIME:23:26:08
+
+
+cat > fileName (ctrl+D to end)
+mv fileOldName fileNewName  (change name)
+rm fileName
+rm -r directoryName
+rmdir directoryName
+
+cp fileName CopyFileName  (copy file)
+ln oldFile newFile(create a link to link to oldFile)
+
+umask			:get or set the file mode creation mask
+
+	chmod +x 777 FileName
+chmod 444 fileName
+
+file*
+wc textName               : lines,words,characters
+wc -l(w,c)
+
+sort fileName
+cut -d"-" -f 1,3 players	:remove sections from each line of files
+dd if=oldFileName of=outFileName conv=ucase	:copy and convert to upper case
+
+banner textYouWantToText
+
+compress -v fileName
+
+set parameter
+echo $*
+
+
+
+
+
+
+
+
+usermod -l login-name old-name
+usermod -u UID username
+
+fortune off|cowsay
+df
+
+tar:
+tar cvf archivename.tar dirname/      : create a new archive
+tar xvf archivename.tar		      : extract from an existing tar archive
+tar xvf archivename.tar               : view tar archive
+
+grep:
+grep -i "the" demo_file  	      : search for a given string in a file
+grep -A 3 -i "example" demo_file      : along with 3 lines after it
+grep -r "ramesh" *		      : search for a string in all files recursively
+
+
+find:
+find -iname "nameyouwanttofind"	      : case in-sensitive find
+find -iname "namefile" -exec md5sum{} \; : execute commands on files found by the find
+find ~ -empty			      : find all empty files in home directory
+
+awk:
+awk '!($0 in array) { array[$0]; print }' fileName : remove duplicate lines using awk
+awk -F ':' '$3==$4' passwd.txt			   : print all lines that has the same uid and gid
+awk '{print $2, $5;}' filename.txt 		   : print only specific filed from a file
+
+
+vim:
+vim +143 filename.txt			            : go to 143rd line of file
+vim +/search-term filename.txt
+vim -R /etc/passwd				    : open file in read only mode
+
+diff:
+diff -w name.txt nameNew.txt			: Ignore white space while comparing
+
+sort:
+sort fileName					: sort a file in ascending order
+sort -r fileName				: decending order
+sort -t: -k 3n /etc/passwd | more		: sort passwd file by 3rd filed
+
+sh	shellscriptFile.sh
+bash
+	
+set string
+echo $*
+echo $#	
+
+[arithmetic operations]
+a=30 b=15
+$a \* $b (axb)
+echo `expr $a + $b`
+
+/,*,%
++,-
+
+c=`echo $a + $b | bc`
+
+echo "string whatever you want \n\r\t\b laterword"
+echo "\033[1mAndYourString\033[0m"
+tput lines
+tput cols
+tput bold
+
+read source target
+if [ $value -lt(gt)(eq)(le)(ge)(ne) value2 ]
+   [ -f(-d)(-c)(-b)(-r)(-w)(-x)(-s) fname ]		:file, directory,
+   [ $num -le value1 -a $num -ge value2 ]		:check whether the number is less or equal to value1 and greater or equal to value 2
+	then
+elif
+	then
+else
+fi
+
+[case]
+read var
+case $var in
+	[value1-value2])
+		function1
+	;;
+
+	?)
+		echo ""
+	;;
+	
+	*)
+		echo""
+	;;
+esac
+	
+[while]
+while	[ $value -le 10 ]
+do
+	echo $value
+	value =`expr $value + 1`
+done
+
+[until]
+until [ $value -ge 10 ]
+do
+	echo $value
+	value=`expr $value + 1`
+done
+
+[for-loop]
+
+for item in *
+do
+	if [ -d $item ]
+	then 
+		echo $item
+	fi
+done
+ 
+
+
+[passwd]
+cat /etc/passwd
+
+line="something: about a :sentence."
+IFS=:
+set $line...
+sleep seconds
+
+[while installing archlinux]
+efivar -l   : verifying EFI mode is enabled
+gdisk /dev/sdX		: wiping the exisiting partion table
+cgdisk /dev/sdX		: creating boot partion and the difference between EF00 and EF02 Hex codes
+mkfs.fat -F32 /dev/sdx  : boot needs to be Fat32
+mkswap /dev/sdx
+swapon /dev/sdx
+mkfs.ext4 /dev/sdx	: for home and root
+
+mount /dev/sda3 /mnt	: for root
+mkdir /mnt/boot		: for boot
+mkdir /mnt/home		: for user home
+mount /dev/sda1 /mnt/boot
+mount /dev/sda4 /mnt/home
+
+cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
+sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.backup
+rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
+pacstrap -i /mnt base base-devel
+genfstab -U -p /mnt >> /mnt/etc/fstab : generate a fstabl file
+arch-chroot /mnt
+nano /etc/locale.gen
+
+
+

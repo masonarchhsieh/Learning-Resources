@@ -1,0 +1,3 @@
+/home/masonhsieh/Desktop/Desktop/L/Learning/openCV/sample/CMakeFiles/rebuild_cache.dir
+/home/masonhsieh/Desktop/Desktop/L/Learning/openCV/sample/CMakeFiles/Hello.dir
+/home/masonhsieh/Desktop/Desktop/L/Learning/openCV/sample/CMakeFiles/edit_cache.dir
