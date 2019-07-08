@@ -1,0 +1,47 @@
+## The material is from https://brennan.io/2015/01/16/write-a-shell-in-c/
+
+A shell does three main things in its lifetime.
+    1.) Initialize: In this step, a typical shell would read and execute its configuration files. These change aspects of the shell’s behavior.
+    2.) Interpret: Next, the shell reads commands from stdin (which could be interactive, or a file) and executes them.
+    3.) Terminate: After its commands are executed, the shell executes any shutdown commands, frees up any memory, and terminates.
+
+ a simple way to handle commands is with three steps:
+     Read: Read the command from standard input.
+     Parse: Separate the command string into a program and arguments.
+     Execute: Run the parsed command.
+
+How shells start processes:
+    There are only two ways of starting processes on Unix. The first one (which almost doesn’t count) is by being Init. You see, when a Unix computer boots, its kernel is loaded. Once it is loaded and initialized, the kernel starts only one process, which is called Init. This process runs for the entire length of time that the computer is on, and it manages loading up the rest of the processes that you need for your computer to be useful.
+
+    Since most programs aren’t Init, that leaves only one practical way for processes to get started: the fork() system call. When this function is called, the operating system makes a duplicate of the process and starts them both running. The original process is called the “parent”, and the new one is called the “child”. fork() returns 0 to the child process, and it returns to the parent the process ID number (PID) of its child. In essence, this means that the only way for new processes is to start is by an existing one duplicating itself.
+
+    This might sound like a problem. Typically, when you want to run a new process, you don’t just want another copy of the same program – you want to run a different program. That’s what the exec() system call is all about. It replaces the current running program with an entirely new one. This means that when you call exec, the operating system stops your process, loads up the new program, and starts that one in its place. A process never returns from an exec() call (unless there’s an error).
+
+    With these two system calls, we have the building blocks for how most programs are run on Unix. First, an existing process forks itself into two separate ones. Then, the child uses exec() to replace itself with a new program. The parent process can continue doing other things, and it can even keep tabs on its children, using the system call wait().
+
+
+Library:
+    #include <sys/wait.h>
+        waitpid() and associated macros
+    #include <unistd.h>
+        chdir()
+        fork()
+        exec()
+        pid_t
+    #include <stdlib.h>
+        malloc()
+        realloc()
+        free()
+        exit()
+        execvp()
+        EXIT_SUCCESS, EXIT_FAILURE
+    #include <stdio.h>
+        fprintf()
+        printf()
+        stderr
+        getchar()
+        perror()
+    #include <string.h>
+        strcmp()
+        strtok()
+        Once you have the code and headers, it should be as simple as running gcc -o main main.c to compile it, and then ./main to run it.
