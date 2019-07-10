@@ -1,0 +1,31 @@
+
+Object Tracking:
+
+	Color Filtering:
+		cvtColor() -> from BGR to HSV
+		inRange() -> between a max and min
+	Contour finding:
+		findContours()
+		moments method
+
+
+	Step1: 
+		Convert image from BGR to HSV
+		(Blue, Green, Red) -> (Hue, Saturation, Value)
+
+	Step2:
+		Filter the colors of interest between a MIN and MAX threshold
+
+	Step3:
+		Morphological Operations
+			Dilate and Erode:
+			ERODE:	"erodes" into white space. Making it smaller or non existent
+			DILATE: "dilates" white space. Making it larger
+	Final:
+		FindContours:
+			input: binary image
+			output: a vector of contours. The outline of all objects found in binary image
+		"Moments" method
+			input: vector of contours
+			output: x, y coordinates of largest contour
+			defined by its inner area

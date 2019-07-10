@@ -1,0 +1,18 @@
+Use OOP approach:
+	each object has its own unique properties
+	look for objects with the same salient features and group them together
+
+Track Multiple objects:
+	push back similar objects into a C++ vector
+	Unpack the vector to display the found objects
+
+
+H:
+11
+48
+S
+115
+256
+V
+102
+256
