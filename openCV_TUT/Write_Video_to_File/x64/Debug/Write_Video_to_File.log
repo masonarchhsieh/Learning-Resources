@@ -1,0 +1,4 @@
+﻿  Write_Video_to_File.cpp
+d:\opencv_tut\write_video_to_file\write_video_to_file\write_video_to_file.cpp(57): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+d:\opencv_tut\write_video_to_file\write_video_to_file\write_video_to_file.cpp(56): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  Write_Video_to_File.vcxproj -> D:\openCV_TUT\Write_Video_to_File\x64\Debug\Write_Video_to_File.exe
