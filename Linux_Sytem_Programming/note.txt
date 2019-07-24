@@ -1,0 +1,138 @@
+## Reference: https://xmonkee.com/posts/LinuxSystemProgrammingCh1-4?fbclid=IwAR2JBETHoR4q-WkbgmQz8f4InTk89qAXGc9yoQ5VN60HrqcCXO17hqLEb7Y
+
+Introduction:
+    processes inherit the UID and GID
+    permission octal values: r=4, w=2, x=1. Order is user, group, everyone else
+    functions normally just return a -1 to indicate an error
+    more details to be found in "extern int erno" in <erno.h>
+    to print "void perror(const char *str)" in <stdio.h>
+
+    example:
+        if (close (fd) == -1)   perror("close");
+
+File I/O:
+    opening files:
+        fd = open(<path>, flags);
+    create files:
+        fd = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0664);
+        // The above is equivalent to the following line:
+        fd = create(filename, 0644);
+        // fd of -1 indicates error
+    reading:
+        #include <unistd.h>
+        ssize_t read(int fd, void *buf, size_t len);
+
+        example:
+            ssize_t ret;
+            while (len != 0 && (ret = read(fd, buf, len)) != 0) {
+                if (ret == -1) {
+                    if (erno == EINTR)  continue;
+                    perror("read");
+                    break;
+                }
+                len -= ret;
+                buf += ret;
+            }
+
+        nonblocking reads can be achieved by passing O_NONBLOCK to "open"
+        if a read is blocked, it will return -1 and erno will be set to EAGAIN
+
+    write:
+        #include <unistd.h>
+        ssize_t write(int fd, const void *buf, size_t count);
+
+        call fsync(int ft) to sync writes to storage
+        fdatasync(int fd) does the same thing, without updated metadata, and is faster
+        use the O_SYNC flag to always sync
+        
+    closing:
+        #include <unistd.h>
+        int close(int fd);
+
+    seeking:
+        #include <sys/types.h>
+        #include <unistd.h>
+        off_t lseek(int fd, off_t pos, int origin);
+
+    position reads and writes avoid the race condition associated with seeking and then reading
+        #define _XOPEN_SOURCE 90
+        #include <unistd.h>
+        ssize_t pread(int fd, void *buf, size_t count, off_t pos);
+        ssize_t pwrite(int fd, const void *buf, size_t count, off_t pos);
+
+    Multiplexed IO:
+        poll() is easier to use then select()
+        both wait on a set of open file descriptors and return when any are available
+
+        poll example:
+           
+        The VFS provides a unified blocks and inodes based interface to all filesystems
+        The page cache holds retrieved info including readaheads
+
+
+        
+Buffered I/O:
+    usually more efficient to read in multiples of 4096/8192 bytes because of block alignment
+    user space buffered IO can increase performance even more
+    write to a buffer, which is written in a single operation
+    The read requests are served from the buffer
+    The end result is fewer system calls for larger amounts of data, all aligned on block boundaries
+    <stdio.h>
+    Standard I/O routines act on file pointers, not fds
+    
+    File *fopen(const char *path, const char *mode);
+    File *fdopen(int fd, const char *mode);
+    // modes: r, w, r+(read+write), w+(read, write, truncates), a+(rw in append mode)
+    // closing the stream will close the file descriptor as well
+    int fclose(FILE *stream);
+    int fcloseall(void);    // Linux specific
+
+    reading:
+        int fgetc(FILE *stream);            // read a char
+        int ungetc(int c, FILE *stream);    // put it back
+
+        // read a line
+        // reads one char less than size and puts a  at the end
+        // will stop and newline and also put a 
+        char *fgets(char *str, int size, FILE *stream);         // read a line
+        
+        // Read binary data
+        // reads `nr` elements, each of size `size`
+        // returns less than nr if there's an error
+        // it is impossible to know which of the two conditions occurred without using ferror() and feof()
+        size_t fread (void *buf, size_t size, size_t nr, FILE *stream);
+
+    writing:
+        int fputc(int c, FILE *stream);             // write a char, return EOF in case of error
+        int fputs(const char* str, FILE *stream);   // write a string
+        // binary
+        // A return value less than nr denotes error
+        size_t fwrite(void *buf, size_t size, size_t nr, FILE *stream);
+
+    seek:
+        int fseek(FILE *stream, long offset, int whence):
+        // fsetpos, rewind, ftell, fgetpos for seeking
+        // fflush flushes the data to the kernel (but does not sync)
+        fileno(*stream) gets the fd
+
+    errors:
+        ferror(FILE *stream) returns non-zero if error is set
+        feof() returns nonzero if EOF is set
+        clearerr() clears the error
+
+    Threading:
+        standard io functions are thread safe
+        for multipl functions, use explicit locks
+
+        flockfile(*stream) locks a file (blocking) by incrementing lock count
+        funlockfile(*stream) decrements lock count
+        ftrylockfile(*stream) is non-blocking, returning nonzero if cannot lock
+
+
+
+
+
+
+
+
+
