@@ -1,0 +1,18 @@
+﻿  Automatic Colour Filter.cpp
+d:\opencv_tut\automatic colour filter\automatic colour filter\automatic colour filter.cpp(45): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+d:\opencv_tut\automatic colour filter\automatic colour filter\automatic colour filter.cpp(78): warning C4474: 'sprintf_s' : too many arguments passed for format string
+  d:\opencv_tut\automatic colour filter\automatic colour filter\automatic colour filter.cpp(78): note: placeholders and their parameters expect 0 variadic arguments, but 1 were provided
+d:\opencv_tut\automatic colour filter\automatic colour filter\automatic colour filter.cpp(79): warning C4474: 'sprintf_s' : too many arguments passed for format string
+  d:\opencv_tut\automatic colour filter\automatic colour filter\automatic colour filter.cpp(79): note: placeholders and their parameters expect 0 variadic arguments, but 1 were provided
+d:\opencv_tut\automatic colour filter\automatic colour filter\automatic colour filter.cpp(80): warning C4474: 'sprintf_s' : too many arguments passed for format string
+  d:\opencv_tut\automatic colour filter\automatic colour filter\automatic colour filter.cpp(80): note: placeholders and their parameters expect 0 variadic arguments, but 1 were provided
+d:\opencv_tut\automatic colour filter\automatic colour filter\automatic colour filter.cpp(81): warning C4474: 'sprintf_s' : too many arguments passed for format string
+  d:\opencv_tut\automatic colour filter\automatic colour filter\automatic colour filter.cpp(81): note: placeholders and their parameters expect 0 variadic arguments, but 1 were provided
+d:\opencv_tut\automatic colour filter\automatic colour filter\automatic colour filter.cpp(82): warning C4474: 'sprintf_s' : too many arguments passed for format string
+  d:\opencv_tut\automatic colour filter\automatic colour filter\automatic colour filter.cpp(82): note: placeholders and their parameters expect 0 variadic arguments, but 1 were provided
+d:\opencv_tut\automatic colour filter\automatic colour filter\automatic colour filter.cpp(83): warning C4474: 'sprintf_s' : too many arguments passed for format string
+  d:\opencv_tut\automatic colour filter\automatic colour filter\automatic colour filter.cpp(83): note: placeholders and their parameters expect 0 variadic arguments, but 1 were provided
+d:\opencv_tut\automatic colour filter\automatic colour filter\automatic colour filter.cpp(271): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+d:\opencv_tut\automatic colour filter\automatic colour filter\automatic colour filter.cpp(284): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+d:\opencv_tut\automatic colour filter\automatic colour filter\automatic colour filter.cpp(285): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  Automatic Colour Filter.vcxproj -> D:\openCV_TUT\Automatic Colour Filter\x64\Debug\Automatic Colour Filter.exe
